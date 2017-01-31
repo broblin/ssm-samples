@@ -16,7 +16,7 @@ buildscript {
 
 def sampleProjects() {
     subprojects.findAll { project ->
-        project.name.contains('ssm-samples') && project.name != 'spring-statemachine-samples-common'
+        (project.name.contains('ssm-samples') && project.name != 'spring-statemachine-samples-common' )  || project.name.contains('spring-statemachine-jpa-and-rest-master')
     }
 }
 
@@ -218,6 +218,17 @@ configure(rootProject) {
         })
         maxMemory = '1024m'
     }
+asciidoctor {
+    inputs.dir snippetsDir
+    outputDir "docs"
+    dependsOn test
+}
+
+jar {
+    dependsOn asciidoctor
+    from ("docs/html5") {
+        into 'static/docs'
+    }
 
     task docsZip(type: Zip) {
         group = 'Distribution'
@@ -247,7 +258,7 @@ configure(rootProject) {
             include 'license.txt'
             include 'notice.txt'
             into "${baseDir}"
-            expand(copyright: new Date().format('yyyy'), version: project.version)
+            expand(copyright: new Date().format('yyyy'), versidemoon: project.version)
         }
 
         from(zipTree(docsZip.archivePath)) {

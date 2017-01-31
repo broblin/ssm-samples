@@ -8,3 +8,6 @@
 *.factorypath
 .project
 *.log
+*.eml
+*.travis.yml
+
