@@ -312,5 +312,17 @@ jar {
         }
     }
 
+    project('ssm-samples-orderSpringStateMahineSample') {
+        description = 'Spring State Machine Event Service Sample'
+        dependencies {
+            compile("org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion")
+            compile("org.apache.commons:commons-pool2:$commonsPool2Version")
+            compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+            compile("org.springframework.statemachine:spring-statemachine-kryo:$springStateMachineVersion")
+            compile("org.postgresql:postgresql:9.4-1201-jdbc41")
+        }
+    }
+
+
 }
 

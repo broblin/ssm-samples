@@ -16,10 +16,10 @@ import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 @Configuration
-@Slf4j
+//@Slf4j
 @EnableStateMachineFactory(contextEvents=false)
 public class OrderStateMachineConfiguration extends EnumStateMachineConfigurerAdapter<OrderState, OrderEvent> {
 
@@ -43,11 +43,11 @@ public class OrderStateMachineConfiguration extends EnumStateMachineConfigurerAd
         return new StateMachineListenerAdapter<OrderState, OrderEvent>() {
             @Override
             public void stateChanged(State<OrderState, OrderEvent> from, State<OrderState, OrderEvent> to) {
-                log.info("State changed to {}", to.getId());
+               // log.info("State changed to {}", to.getId());
             }
             @Override
             public void eventNotAccepted(Message<OrderEvent> event) {
-                log.error("Event not accepted: {}", event.getPayload());
+                //log.error("Event not accepted: {}", event.getPayload());
             }
         };
     }
@@ -206,12 +206,12 @@ public class OrderStateMachineConfiguration extends EnumStateMachineConfigurerAd
     }
 
     void setUnpaid(ExtendedState extendedState) {
-        log.info("Unsetting paid");
+        //log.info("Unsetting paid");
         extendedState.getVariables().put("paid", Boolean.FALSE);
     }
 
     void setPaid(ExtendedState extendedState) {
-        log.info("Setting paid");
+       // log.info("Setting paid");
         extendedState.getVariables().put("paid", Boolean.TRUE);
     }
 

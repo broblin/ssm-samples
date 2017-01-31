@@ -2,10 +2,11 @@ rootProject.name = 'ssm-samples'
 
 include 'eventservice'
 include 'eventserviceJpa'
+include 'orderSpringStateMahineSample'
 include 'spring-statemachine-jpa-and-rest-master'
 
 rootProject.children.find {
-    if (it.name.contains('eventservice')) {
+    if (it.name.contains('eventservice')|| it.name.contains('orderSpringStateMahineSample')) {
         println "it = $it.name" +"****************************************"
         it.name = 'ssm-samples-'+it.name
         println "it = $it.name" +"****************************************"
